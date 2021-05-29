@@ -3,8 +3,8 @@
     $view_folder = './ressources/views/';
     $public_folder = './public/';
 
-    function load_component($page = null, $module = null) {
-        $component = handle_component($page, $module);
+    function load_component($page = null, $module = null, $force_default = false) {
+        $component = handle_component($page, $module, $force_default);
 
         global $view_folder;
         global $database;
@@ -12,7 +12,7 @@
         require($view_folder . $component['page'] . '/' . handle_submodule($component['module']) . '.php');
     }
 
-    function handle_component($page, $module) {
+    function handle_component($page, $module, $force_default) {
         $default_page = 'clients';
         $default_module = 'index';
 
@@ -28,6 +28,10 @@
             if (isset($_GET['module'])) {
                 $module = $_GET['module'];
             }
+        }
+
+        if ($force_default === true) {
+            $module = $default_module;
         }
         
         return [
@@ -50,4 +54,8 @@
         $paths = explode('\\', dirname(__FILE__, 2));
         $root_folder = $paths[count($paths) - 1];
         echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . $root_folder . '/public/' . $path;
+    }
+
+    function refresh() {
+        header('Location: '.$_SERVER['REQUEST_URI']);
     }
