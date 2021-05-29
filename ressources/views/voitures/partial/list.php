@@ -30,7 +30,13 @@
                                 <td>' . $voiture->model . '</td>
                                 <td>' . $voiture->marque . '</td>
                                 <td>' . $voiture->type_moteur . '</td>
-                                <td>
+                                <td class="d-flex">
+                                    <form method="post" action="?page=voitures&module=detail&voiture_id=' . $voiture->id . '">
+                                        <button type="submit" class="btn btn-warning btn-sm">Voir détail</button>
+                                    </form>
+
+                                    &nbsp;
+                                    
                                     <form method="post" action="?page=voitures&module=action.delete&id=' . $voiture->id . '">
                                         <input type="hidden" value="' . $voiture->id . '" />
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
