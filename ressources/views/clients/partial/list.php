@@ -6,6 +6,9 @@
 ?>
 <div class="container mt-4">
     <h2>Liste des clients</h2>
+    <a href="?pages=clients&action=add_client">
+        <button class="btn btn-success">Nouveau client</button>
+    </a>
     <table class="table table-striped">
         <thead>
             <tr>
