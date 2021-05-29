@@ -57,5 +57,24 @@
     }
 
     function refresh() {
-        header('Location: '.$_SERVER['REQUEST_URI']);
+        header("Refresh:0");
+    }
+
+    function redirect($to) {
+        header('Location: ' . $to);
+    }
+
+    function check_data($columns) {
+        $errors = 0;
+        foreach($columns as $column) {
+            if (!isset($_POST[$column])) {
+                $errors++;
+            } else {
+                if (strlen($_POST[$column]) <= 0) {
+                    $errors++;
+                }
+            }
+        }
+
+        return $errors;
     }
