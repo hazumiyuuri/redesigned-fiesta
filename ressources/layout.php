@@ -11,7 +11,7 @@
 <body>
     <?php
         // Loading default component
-        load_component('menu');
+        load_component('menu', null, true);
         load_component();
     ?>
 </body>
